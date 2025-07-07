@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Account;
+import com.example.demo.model.AccountModel;
 import com.example.demo.repository.AccountRepository;
 
 @Controller
@@ -21,6 +22,9 @@ public class UserController {
 
 	@Autowired
 	HttpSession session;
+
+	@Autowired
+	AccountModel account;
 
 	@GetMapping("/users/new")
 	public String registar() {
@@ -35,35 +39,26 @@ public class UserController {
 
 		if (name == null || name.length() == 0) {
 			model.addAttribute("message", "名前を入力してください");
-			model.addAttribute("name", name);
-			model.addAttribute("password_confirm", password_confirm);
-			model.addAttribute("password", password);
 
 			return "signup";
 		}
 
 		if (password == null || password.length() == 0) {
 			model.addAttribute("message", "パスワードを入力してください");
-			model.addAttribute("name", name);
-			model.addAttribute("password_confirm", password_confirm);
-			model.addAttribute("password", password);
+
 			return "signup";
 		}
 
 		if (!password.equals(password_confirm)) {
 			model.addAttribute("message", "パスワードが一致しません");
-			model.addAttribute("name", name);
-			model.addAttribute("password", password);
-			model.addAttribute("password_confirm", password_confirm);
+
 			return "signup";
 		}
 
 		List<Account> existingAccounts = accountRepository.findByName(name);
 		if (!existingAccounts.isEmpty()) {
 			model.addAttribute("message", "この名前は既に使用されています");
-			model.addAttribute("name", name);
-			model.addAttribute("password", password);
-			model.addAttribute("password_confirm", password_confirm);
+
 			return "signup";
 		}
 
@@ -71,8 +66,10 @@ public class UserController {
 
 		model.addAttribute("password", password);
 		model.addAttribute("password_confirm", password_confirm);
+
 		Account account = new Account(name, password);
 		accountRepository.save(account);
+
 		return "redirect:/login";
 	}
 
@@ -83,17 +80,22 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestParam(name = "name") String name,
-			@RequestParam(name = "password") String password,
+	public String login(@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "password", defaultValue = "") String password,
 			Model model) {
 
-		if (name == null || password == null) {
+		if ((name == null || name.isEmpty()) || (password == null || password.isEmpty())) {
 			model.addAttribute("message", "名前とパスワードを入力してください");
 			return "login";
 		}
-		model.addAttribute("name", name);
-		model.addAttribute("password", password);
-		return "redirect:/calendar";
+
+		if (accountRepository.existsByNameAndPassword(name, password)) {
+			account.setName(name);
+			return "redirect:/calendar";
+		}
+		model.addAttribute("message", "名前とパスワードが一致しません");
+		return "login";
+
 	}
 
 }

@@ -8,10 +8,10 @@ import org.springframework.web.context.annotation.SessionScope;
 
 @Component
 @SessionScope
-public class Account {
+public class AccountModel {
 	private String name;
 
-	private List<Account> accounts = new ArrayList<>();
+	private List<AccountModel> accounts = new ArrayList<>();
 
 	private String password;
 
@@ -31,7 +31,7 @@ public class Account {
 		this.password = password;
 	}
 
-	public List<Account> getAccounts() {
+	public List<AccountModel> getAccounts() {
 		return accounts;
 	}
 

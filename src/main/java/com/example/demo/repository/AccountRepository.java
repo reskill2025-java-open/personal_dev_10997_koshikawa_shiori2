@@ -9,5 +9,5 @@ import com.example.demo.entity.Account;
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 	List<Account> findByName(String name);
 
-	boolean findByNameAndPassword(String name, String password);
+	boolean existsByNameAndPassword(String name, String password);
 }
