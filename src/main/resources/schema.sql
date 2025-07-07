@@ -12,7 +12,7 @@ id serial primary key,
 create table records(
 	id serial primary key,
 	user_id int,
-	date date,
+	Date date,
 	category_id int,
 	title text,
 	detail text,

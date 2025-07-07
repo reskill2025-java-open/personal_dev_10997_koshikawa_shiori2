@@ -32,7 +32,7 @@ public class UserController {
 	}
 
 	//空欄か、passwordとpassword_confirmが一致しない時エラーを表示
-	@PostMapping("/users/new")
+	@PostMapping("/users/add")
 	public String redirect_confirm(@RequestParam(name = "name") String name,
 			@RequestParam(name = "password") String password,
 			@RequestParam(name = "password_confirm") String password_confirm, Model model) {
@@ -70,10 +70,19 @@ public class UserController {
 		Account account = new Account(name, password);
 		accountRepository.save(account);
 
+		return "signin";
+	}
+
+	@GetMapping("/users/add")
+	public String add(@RequestParam(name = "name") String name,
+			@RequestParam(name = "password") String password, Model model) {
+		Account account = new Account(name, password);
+		accountRepository.save(account);
+
 		return "redirect:/login";
 	}
 
-	@GetMapping({ "/", "/login", "/logout" })
+	@GetMapping({ "/users", "/users/login", "/users/logout" })
 	public String index() {
 		session.invalidate();
 		return "login";
