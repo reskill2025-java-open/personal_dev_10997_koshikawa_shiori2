@@ -1,0 +1,99 @@
+package com.example.demo.controller;
+
+import java.util.List;
+
+import jakarta.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.entity.Account;
+import com.example.demo.repository.AccountRepository;
+
+@Controller
+public class UserController {
+	@Autowired
+	AccountRepository accountRepository;
+
+	@Autowired
+	HttpSession session;
+
+	@GetMapping("/users/new")
+	public String registar() {
+		return "signup";
+	}
+
+	//空欄か、passwordとpassword_confirmが一致しない時エラーを表示
+	@PostMapping("/users/new")
+	public String redirect_confirm(@RequestParam(name = "name") String name,
+			@RequestParam(name = "password") String password,
+			@RequestParam(name = "password_confirm") String password_confirm, Model model) {
+
+		if (name == null || name.length() == 0) {
+			model.addAttribute("message", "名前を入力してください");
+			model.addAttribute("name", name);
+			model.addAttribute("password_confirm", password_confirm);
+			model.addAttribute("password", password);
+
+			return "signup";
+		}
+
+		if (password == null || password.length() == 0) {
+			model.addAttribute("message", "パスワードを入力してください");
+			model.addAttribute("name", name);
+			model.addAttribute("password_confirm", password_confirm);
+			model.addAttribute("password", password);
+			return "signup";
+		}
+
+		if (!password.equals(password_confirm)) {
+			model.addAttribute("message", "パスワードが一致しません");
+			model.addAttribute("name", name);
+			model.addAttribute("password", password);
+			model.addAttribute("password_confirm", password_confirm);
+			return "signup";
+		}
+
+		List<Account> existingAccounts = accountRepository.findByName(name);
+		if (!existingAccounts.isEmpty()) {
+			model.addAttribute("message", "この名前は既に使用されています");
+			model.addAttribute("name", name);
+			model.addAttribute("password", password);
+			model.addAttribute("password_confirm", password_confirm);
+			return "signup";
+		}
+
+		model.addAttribute("name", name);
+
+		model.addAttribute("password", password);
+		model.addAttribute("password_confirm", password_confirm);
+		Account account = new Account(name, password);
+		accountRepository.save(account);
+		return "redirect:/login";
+	}
+
+	@GetMapping({ "/", "/login", "/logout" })
+	public String index() {
+		session.invalidate();
+		return "login";
+	}
+
+	@PostMapping("/login")
+	public String login(@RequestParam(name = "name") String name,
+			@RequestParam(name = "password") String password,
+			Model model) {
+
+		if (name == null || password == null) {
+			model.addAttribute("message", "名前とパスワードを入力してください");
+			return "login";
+		}
+		model.addAttribute("name", name);
+		model.addAttribute("password", password);
+		return "redirect:/calendar";
+	}
+
+}

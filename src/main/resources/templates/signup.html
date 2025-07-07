@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/users/new" method="post">
+<h1>ユーザー登録</h1>
+[[${message}]]
+<br>
+<input type="text" name="name"th:value="${name}" placeholder="ユーザ名"><br>
+<input type="text" name="password" th:value="${password}" placeholder="パスワード"><br>
+<input type="text" name="password_confirm"th:value="${password_confirm}" placeholder="パスワード確認">
+<br><button>新規登録</button>
+</form>
+</body>
+</html>
