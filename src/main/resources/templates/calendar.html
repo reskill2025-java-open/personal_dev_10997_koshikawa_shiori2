@@ -5,26 +5,58 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>家計簿カレンダー</h3>
+	<h3 th:text="${year}+'年'+${month}+'月の家計簿'"></h3>
+	
 	
 	<div>
-		
-	</div>
+		<a th:href="@{/calendar(year=${prevYear}, month=${prevMonth})}">← 前の月</a>
+		       |
+		       <a th:href="@{/calendar(year=${nextYear}, month=${nextMonth})}">次の月 →</a>
+</div>
 	
 	<table border="1">
 	<tr>
-		<th>日</th>
+		<th style="color:red">日</th>
 		<th>月</th>
 		<th>火</th>
 		<th>水</th>
 		<th>木</th>
 		<th>金</th>
-		<th>土</th>
+		<th style="color:blue">土</th>
 	</tr>
+		<tr th:each="week:${#numbers.sequence(1,6)}">
+			<td th:each="dayOfWeek : ${#numbers.sequence(0, 6)}"
+			        th:with="cellIndex=${(week - 1) * 7 + dayOfWeek},
+			                 dateNum=${cellIndex - firstDayOfWeek + 1}">
+							 
+<!--							 空白セル-->
+							 <div th:if="${cellIndex<firstDayOfWeek or dateNum>daysInMonth}">
+								&nbsp;
+							 </div>
+							 
+<!--							 日付と支出-->
+<div th:if="${cellIndex>=firstDayOfWeek and dateNum <=daysInMonth}">
+	<a th:href="@{/dailyList(year=${year}, month=${month}, day=${dateNum})}" th:text="${dateNum}"></a>
+	
+<br>
+
+<div th:each="expense : ${expenses}"
+            th:if="${#temporals.format(expense.date.toInstant().atZone(T(java.time.ZoneId).systemDefault()).toLocalDate(), 'd') == dateNum}"
+            >
+			<span th:text="'\'+${expense.price}"></span>
+       </div>
+</div>
+
+
+
+
+
+</td>
+
+
+</tr>
 		
-		
-		
-	</table>
+</table>
 </body>
 
 </body>

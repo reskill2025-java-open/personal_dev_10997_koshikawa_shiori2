@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "records")
+@Table(name = "kakeibo")
 public class Kakei {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class Kakei {
 
 	private Date date;
 
-	@Column(name = "categoy_id")
+	@Column(name = "category_id")
 	private Integer categoryId;
 
 	private String title;

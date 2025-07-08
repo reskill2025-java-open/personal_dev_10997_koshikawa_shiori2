@@ -1,5 +1,5 @@
 drop table if exists accounts;
-drop table if exists records;
+drop table if exists kakeibo;
 drop table if exists categories;
 
 create table accounts(
@@ -9,7 +9,7 @@ id serial primary key,
 );
 
 
-create table records(
+create table kakeibo(
 	id serial primary key,
 	user_id int,
 	Date date,
