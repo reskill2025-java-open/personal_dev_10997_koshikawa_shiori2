@@ -40,7 +40,7 @@
 	
 <br>
 
-<div th:each="expense : ${expenses}"
+<div th:each="expense : ${kakeibo}"
             th:if="${#temporals.format(expense.date.toInstant().atZone(T(java.time.ZoneId).systemDefault()).toLocalDate(), 'd') == dateNum}"
             >
 			<span th:text="'\'+${expense.price}"></span>

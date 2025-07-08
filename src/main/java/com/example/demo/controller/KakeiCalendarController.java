@@ -57,4 +57,5 @@ public class KakeiCalendarController {
 		return "dailyList";
 	}
 
+	//model作ってセッションスコープにデータ保存
 }
