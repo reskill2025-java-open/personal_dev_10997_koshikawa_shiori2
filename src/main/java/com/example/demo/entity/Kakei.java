@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,7 +19,7 @@ public class Kakei {
 	@Column(name = "user_id")
 	private Integer userId;
 
-	private Date date;
+	private LocalDate date;
 
 	@Column(name = "category_id")
 	private Integer categoryId;
@@ -30,7 +30,7 @@ public class Kakei {
 
 	private Integer price;
 
-	public Kakei(Integer userId, Date date,
+	public Kakei(Integer userId, LocalDate date,
 			Integer categoryId, String title, String detail,
 			Integer price) {
 		this.userId = userId;
@@ -61,7 +61,7 @@ public class Kakei {
 		this.userId = userId;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -81,7 +81,7 @@ public class Kakei {
 		this.price = price;
 	}
 
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
@@ -100,4 +100,5 @@ public class Kakei {
 	public Integer getPrice() {
 		return price;
 	}
+
 }

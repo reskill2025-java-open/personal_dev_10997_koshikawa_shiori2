@@ -6,38 +6,49 @@
 </head>
 <body>
 <h3>新規登録</h3>
-<table border="1">
+<form action="/record/add" method="post">
+[[${message}]]
+	
+	<table border="1">
 	<tr>
 		<th>日付</th>
-		<td><input type="date"></td>
+		<td><input type="date" name="date"></td>
 	</tr>
-	<td>
-		
-	</td>
+	
 	<tr>
 		<th>項目</th>
-		<td><input type="text"></td>
+		<td>		<select name="categoryId">
+		    <option value="1">食費</option>
+		    <option value="2">家賃</option>
+		    <option value="3">交通費</option>
+			<option value="4">雑費</option>
+			<option value="5">交際費</option>
+			<option value="6">ガソリン代</option>
+		
+		</select></td>
 	</tr>
 	<tr>
 		<th>
 			タイトル
 		</th>
-		<td><input type="text"></td>
+		<td><input type="text" name="title"></td>
 	</tr>
 	<tr>
 		<th>詳細</th>
-		<td><input type="text"></td>
+		<td><input type="text" name="detail"></td>
 	</tr>
 	<tr>
 		<th>
 			金額
 		</th>
-		<td><input type="text"></td>
+		<td><input type="text" name="price"></td>
 	</tr>
 	
 </table>
+<button>登録</button>
+</form>
 
 <a href="/calendar" class="button">戻る</a>
-<a href="/calendar" class="button">登録</a>
+
 </body>
 </html>
