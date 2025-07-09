@@ -6,5 +6,41 @@
 </head>
 <body>
 <h3>家計詳細</h3>
+
+<h4>[[${year}]]年[[${month}]]月[[${day}]]日の収支記録</h4>
+<table border="1">
+
+		   <tr>
+			<td>
+				カテゴリ
+			</td>
+			<td>
+			タイトル	
+			</td>
+			<td>
+				詳細
+			</td>
+			<td>
+				価格
+			</td>
+		   </tr>
+	   
+	   <tr th:each="kakeibo : ${kakeiboData}">
+	    <td th:text="${kakeibo.categoryName}">	
+	   </td>
+	   <td th:text="${kakeibo.title}">
+	   </td>
+	   <td th:text="${kakeibo.detail}">
+	   </td>
+	   <td th:text="${kakeibo.price}">
+	   </td>
+	   </tr>
+	   
+	   </table>
+	   
+	   <a href="/calendar" class="button">戻る</a>
+	   
+<!--	   html作ったらいじる-->
+	   <a href="" class="button">追加</a>
 </body>
 </html>

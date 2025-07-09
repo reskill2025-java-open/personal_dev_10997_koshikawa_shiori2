@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +53,8 @@ public class UserController {
 			return "signup";
 		}
 
-		List<Account> existingAccounts = accountRepository.findByName(name);
-		if (!existingAccounts.isEmpty()) {
+		Account existingAccounts = accountRepository.findByName(name);
+		if (existingAccounts != null) {
 			model.addAttribute("message", "この名前は既に使用されています");
 
 			return "signup";
@@ -99,7 +97,10 @@ public class UserController {
 		}
 
 		if (accountRepository.existsByNameAndPassword(name, password)) {
-			account.setName(name);
+			Account nameCheck = accountRepository.findByName(name);
+			account.setName(nameCheck.getName());
+			account.setId(nameCheck.getId());
+			//			account.setId(id);
 			return "redirect:/calendar";
 		}
 		model.addAttribute("message", "名前とパスワードが一致しません");

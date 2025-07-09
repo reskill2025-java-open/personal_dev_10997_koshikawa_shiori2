@@ -9,6 +9,17 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 @SessionScope
 public class AccountModel {
+
+	private Integer id;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	private String name;
 
 	private List<AccountModel> accounts = new ArrayList<>();

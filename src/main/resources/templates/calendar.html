@@ -6,11 +6,13 @@
 </head>
 <body>
 	<h3 th:text="${year}+'年'+${month}+'月の家計簿'"></h3>
+	[[${@accountModel.name}]]さんの収支記録
+	<a href="/users/login">ログアウト</a>
 	
 	
 	<div>
 		<a th:href="@{/calendar(year=${prevYear}, month=${prevMonth})}">← 前の月</a>
-		       |
+		       
 		       <a th:href="@{/calendar(year=${nextYear}, month=${nextMonth})}">次の月 →</a>
 </div>
 	
@@ -40,9 +42,11 @@
 	
 <br>
 
-<div th:each="expense : ${expenses}" th:if="${expense.date.date==(dateNum)}" th:text="${expense.price}" >
-	
+<div th:each="expense : ${expenses}" th:if="${expense.date.date==(dateNum)}"  >
+	[[${expense.price}]]
        </div>
+<!--	   カテゴリーを出す-->
+	   <div ></div>
 </div>
 
 
