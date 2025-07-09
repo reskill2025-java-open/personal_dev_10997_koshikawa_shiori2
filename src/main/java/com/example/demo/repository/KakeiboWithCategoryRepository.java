@@ -10,8 +10,8 @@ import com.example.demo.entity.KakeiboWithCategory;
 
 public interface KakeiboWithCategoryRepository extends JpaRepository<KakeiboWithCategory, Integer> {
 	//菊池さんのレポジトリを確認
-
-	List<KakeiboWithCategory> findByDateBetween(LocalDate startDate, LocalDate endDate);
+	List<KakeiboWithCategory> findByUserIdAndDateBetween(Integer userId, Date startDate, Date endDate);
 
 	List<KakeiboWithCategory> findByUserIdAndDate(Integer userid, LocalDate date);
+
 }

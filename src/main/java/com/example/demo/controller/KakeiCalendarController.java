@@ -55,9 +55,14 @@ public class KakeiCalendarController {
 		LocalDate firstDay = LocalDate.of(currentYear, currentMonth, 1);
 		LocalDate prevMonth = firstDay.minusMonths(1);
 		LocalDate nextMonth = firstDay.plusMonths(1);
-		List<KakeiboWithCategory> expenses = kakeiboWithCategoryRepository.findByDateBetween(firstDay,
-				nextMonth.minusDays(1));
 
+		//userIdと月ごとのデータの取得
+		Integer userId = accountModel.getId();
+		java.sql.Date sqlFirstDay = java.sql.Date.valueOf(firstDay);
+		java.sql.Date sqlEndDay = java.sql.Date.valueOf(nextMonth.minusDays(1));
+
+		List<KakeiboWithCategory> expenses = kakeiboWithCategoryRepository.findByUserIdAndDateBetween(userId,
+				sqlFirstDay, sqlEndDay);
 		int firstDayOfWeek = firstDay.getDayOfWeek().getValue();
 		firstDayOfWeek = (firstDayOfWeek == 7) ? 0 : firstDayOfWeek;
 		int daysInMonth = firstDay.lengthOfMonth();
@@ -89,10 +94,14 @@ public class KakeiCalendarController {
 		LocalDate date = LocalDate.of(year, month, day);
 		Integer userId = accountModel.getId();
 		System.out.println(userId);
-		//この辺の記述をviewように直す、dailyList　htmlも直す
 		model.addAttribute("kakeiboData",
 				kakeiboWithCategoryRepository.findByUserIdAndDate(userId, date));
 		return "dailyList";
+	}
+
+	@GetMapping("/record/add")
+	public String newRecord() {
+		return "recordAdd";
 	}
 
 	//model作ってセッションスコープにデータ保存
