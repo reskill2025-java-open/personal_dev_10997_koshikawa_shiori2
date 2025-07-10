@@ -52,7 +52,7 @@
 	 
 	   <td>
 		
-	<form>
+	<form th:action="@{/record/delete/{id}(id=${kakeibo.id})}" method="get">
 		<button>削除</button>
 	</form>
 	   </td>

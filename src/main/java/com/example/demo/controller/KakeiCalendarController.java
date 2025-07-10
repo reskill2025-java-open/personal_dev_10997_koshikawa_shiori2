@@ -229,6 +229,28 @@ public class KakeiCalendarController {
 
 		//新規追加も、更新も、セッションが切れたらリセットされる
 	}
+
+	//削除画面の表示
+	@GetMapping("/record/delete/{id}")
+	public String confirmDelete(@PathVariable("id") Integer id, Model model) {
+
+		Kakei kakei = kakeiRepository.findById(id).get();
+		model.addAttribute("kakei", kakei);
+		return "recordDelete";
+	}
+
 	//削除処理
+	@PostMapping("/record/delete/{id}")
+	public String delete(@PathVariable("id") Integer id, @RequestParam(name = "date") LocalDate date) {
+		//		Kakei kakei = kakeiRepository.findById(id).get();
+
+		kakeiRepository.deleteById(id);
+
+		LocalDate localDate = date;
+		return "redirect:/dailyList?year=" + localDate.getYear() +
+				"&month=" + localDate.getMonthValue() +
+				"&day=" + localDate.getDayOfMonth();
+
+	}
 
 }
