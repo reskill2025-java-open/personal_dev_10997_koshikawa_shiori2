@@ -3,21 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
 	<form action="/users/add" method="post">
-<h1>ユーザー登録</h1>
-[[${message}]]
+<h3>新規登録</h3>
+<p>[[${message}]]</p>
 <br>
-<input type="text" name="name"th:value="${name}" placeholder="ユーザ名"><br>
+<div class="box">
+<input type="text" name="name"th:value="${name}" placeholder="ユーザ名" ><br>
 <input type="text" name="password" th:value="${password}" placeholder="パスワード"><br>
 <input type="text" name="password_confirm"th:value="${password_confirm}" placeholder="パスワード確認">
+</div>
 
 	
 
-<br><button>新規登録</button>
-
-</form>
+<br><br>
+<div style="text-align: center;">
+<button>新規登録</button>
+</div>
+<div style="text-align: right;">
 <a href="/users/login">ログイン画面へ</a>
+</div>
+</form>
+
 </body>
 </html>

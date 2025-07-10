@@ -3,16 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
 	<h3>ログイン画面</h3>
-	[[${message}]]
+	<p>[[${message}]]</p>
 	<form action="/login" method="post">	
-		<p>ユーザー名:<input type="text"name="name"></p>
-		<p>パスワード:<input type="text"name="password"></p>
+		<div class="box">
+		<input type="text"name="name" placeholder="ユーザ名"><br>
+		<input type="text"name="password" placeholder="パスワード">
 		<button>ログイン</button>
+		</div>
 	</form>
 	
+	<div style="text-align: right;">
 	<a href="/users/new">新規登録画面へ</a>
+	</div>
 </body>
 </html>

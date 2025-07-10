@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+h3{
+	text-align: center;
+	color: peru;
+}
+
+p{
+	text-align: center;
+}
+button, .button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color:burlywood; /* 緑 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;     /* aタグの下線を消す */
+    text-align: center;
+}
+
+.box {
+    text-align: center; 
+}
+
+.box input[type="text"] {
+    width: 200px;
+    margin: 8px 0;     /* 上下の余白 */
+    padding: 8px;       /* 内側の余白 */
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.calendar-containar{
+	text-align:center;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.calendar-table{
+	margin:0 auto;
+	background-color:navajowhite;
+	border-color:beige;
+	border-radius: 10px;
+	overflow: hidden;
+	border-collapse:collapse;
+	
+}
+
+th{
+	padding: 25px;
+	background-color:peru;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+td{
+padding: 25px;
+border-color: solid ghostwhite;
+}
+
