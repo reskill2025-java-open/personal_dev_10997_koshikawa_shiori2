@@ -3,28 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
 	<h3 th:text="${year}+'年'+${month}+'月の家計簿'"></h3>
-	[[${@accountModel.name}]]さんの収支記録
-	<a href="/users/login">ログアウト</a>
+	<p>[[${@accountModel.name}]]さんの収支記録</p>
 	
 	
-	<div>
+	<div style="margin-left: 10px;">
 		<a th:href="@{/calendar(year=${prevYear}, month=${prevMonth})}">← 前の月</a>
 		       
 		       <a th:href="@{/calendar(year=${nextYear}, month=${nextMonth})}">次の月 →</a>
-</div>
+			   </div>
 	
-	<table border="1">
+			   <div class="calendar-container">
+	<table class="calendar-table" border="6"  >
 	<tr>
-		<th style="color:red">日</th>
+		<th style="color:rgb(255, 128, 128)">日</th>
 		<th>月</th>
 		<th>火</th>
 		<th>水</th>
 		<th>木</th>
 		<th>金</th>
-		<th style="color:blue">土</th>
+		<th style="color:skyblue">土</th>
 	</tr>
 		<tr th:each="week:${#numbers.sequence(1,6)}">
 			<td th:each="dayOfWeek : ${#numbers.sequence(0, 6)}"
@@ -43,10 +44,10 @@
 <br>
 
 <div th:each="expense : ${expenses}" th:if="${expense.date.date==(dateNum)}"  >
-	[[${expense.price}]]
+	\[[${expense.price}]]
        </div>
 <!--	   カテゴリーを出す-->
-	   <div ></div>
+	 
 </div>
 
 
@@ -59,6 +60,11 @@
 </tr>
 		
 </table>
+</div>
+<div style="text-align: right;">
+<a href="/users/login">ログアウト</a>
+</div>
+
 </body>
 
 </body>
