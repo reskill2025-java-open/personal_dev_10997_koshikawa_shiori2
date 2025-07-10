@@ -41,10 +41,20 @@
 	   <td th:text="${kakeibo.price}">
 	   </td>
 	   <td>
-		<button>編集</button>
-	   </td>
+		
+
+		<form th:action="@{/record/edit/{id}(id=${kakeibo.id})}" method="get">
+			<button>更新</button>
+		</form>
+		
+	  
+	 </td>
+	 
 	   <td>
-	<button>削除</button>
+		
+	<form>
+		<button>削除</button>
+	</form>
 	   </td>
 	   </tr>
 	   

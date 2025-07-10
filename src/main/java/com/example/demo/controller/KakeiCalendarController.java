@@ -107,15 +107,15 @@ public class KakeiCalendarController {
 		return "recordAdd";
 	}
 
-	//titledetailprice"
+	//新規追加画面
 	@PostMapping("/record/add")
 	public String add(
-			@RequestParam(name = "date", required = false) LocalDate date,
+			@RequestParam(name = "date", defaultValue = "") LocalDate date,
 			//入力フォームから情報取得（viewなので、categoryIdを使う）
-			@RequestParam(name = "categoryId") Integer categoryId,
-			@RequestParam(name = "title") String title,
-			@RequestParam(name = "detail") String detail,
-			@RequestParam(name = "price", required = false) Integer price,
+			@RequestParam(name = "categoryId", defaultValue = "") Integer categoryId,
+			@RequestParam(name = "title", defaultValue = "") String title,
+			@RequestParam(name = "detail", defaultValue = "") String detail,
+			@RequestParam(name = "price", defaultValue = "") Integer price,
 			Model model) {
 
 		if (date == null || categoryId == null || title.equals("") || detail.equals("") || price == null) {
@@ -156,12 +156,79 @@ public class KakeiCalendarController {
 		return "recordEdit";
 	}
 
+	//更新処理
 	@PostMapping("/record/edit/{id}")
-	public String update(@PathVariable("id") Integer id, Model model) {
+	public String update(@PathVariable("id") Integer id,
+			@RequestParam(name = "date", defaultValue = "") LocalDate date,
+			//入力フォームから情報取得（viewなので、categoryIdを使う）
+			@RequestParam(name = "categoryId", defaultValue = "") Integer categoryId,
+			@RequestParam(name = "title", defaultValue = "") String title,
+			@RequestParam(name = "detail", defaultValue = "") String detail,
+			@RequestParam(name = "price", defaultValue = "") Integer price, Model model) {
 
-		return "redirect:/recordEdit";
+		Integer userId = accountModel.getId();
+		Kakei kakei = kakeiRepository.findById(id).get();
+
+		boolean hasError = false;
+
+		// 空欄の場合は元の値を使う
+		if (date == null) {
+			date = kakei.getDate();
+			hasError = true;
+		}
+		if (categoryId == null) {
+			categoryId = kakei.getCategoryId();
+			hasError = true;
+		}
+		if (title == null || title.isEmpty()) {
+			title = kakei.getTitle();
+			hasError = true;
+		}
+		if (detail == null || detail.isEmpty()) {
+			detail = kakei.getDetail();
+			hasError = true;
+		}
+		if (price == null) {
+			price = kakei.getPrice();
+			hasError = true;
+		}
+
+		// 最新の値を再セット
+		kakei.setDate(date);
+		kakei.setCategoryId(categoryId);
+		kakei.setTitle(title);
+		kakei.setDetail(detail);
+		kakei.setPrice(price);
+		kakei.setUserId(userId);
+
+		if (hasError) {
+			model.addAttribute("message", "空欄があったため、元の値で補完しました");
+			model.addAttribute("kakei", kakei);
+			return "recordEdit";
+		}
+
+		//	空欄になってしまうエラー処理
+		//		kakei.setDate(date);
+		//		kakei.setCategoryId(categoryId);
+		//		kakei.setTitle(title);
+		//		kakei.setDetail(detail);
+		//		kakei.setPrice(price);
+		//		kakei.setUserId(userId);
+		//
+		//		if (date == null || categoryId == null || title.equals("") || detail.equals("") || price == null) {
+		//			model.addAttribute("message", "空欄があります");
+		//			model.addAttribute("kakei", kakei);
+		//			return "recordEdit";
+		//		}
+
+		kakeiRepository.save(kakei);
+		LocalDate localDate = date;
+		return "redirect:/dailyList?year=" + localDate.getYear() +
+				"&month=" + localDate.getMonthValue() +
+				"&day=" + localDate.getDayOfMonth();
+
+		//新規追加も、更新も、セッションが切れたらリセットされる
 	}
-
-	//レコード編集にidを渡す
+	//削除処理
 
 }

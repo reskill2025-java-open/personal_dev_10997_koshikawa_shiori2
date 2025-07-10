@@ -6,5 +6,46 @@
 </head>
 <body>
 <h3>家計更新</h3>
+<h4>[[${message}]]</h4>
+<form th:action="@{/record/edit/{id}(id=${kakei.id})}" method="post">
+<table border="1">
+	<tr>
+		<th>日付</th>
+		<td><input type="date" name="date" th:value="${kakei.date}"></td>
+	</tr>
+	
+	<tr>
+		<th>項目</th>
+		<td>		<select name="categoryId" >
+		    <option value="1"th:selected="${kakei.categoryId==1}">食費</option>
+		    <option value="2"th:selected="${kakei.categoryId==2}">家賃</option>
+		    <option value="3"th:selected="${kakei.categoryId==3}">交通費</option>
+			<option value="4"th:selected="${kakei.categoryId==4}">雑費</option>
+			<option value="5"th:selected="${kakei.categoryId==5}">交際費</option>
+			<option value="6"th:selected="${kakei.categoryId==6}">ガソリン代</option>
+		
+		</select></td>
+	</tr>
+	<tr>
+		<th>
+			タイトル
+		</th>
+		<td><input type="text" name="title" th:value="${kakei.title}"></td>
+	</tr>
+	<tr>
+		<th>詳細</th>
+		<td><input type="text" name="detail" th:value="${kakei.detail}"></td>
+	</tr>
+	<tr>
+		<th>
+			金額
+		</th>
+		<td><input type="text" name="price" th:value="${kakei.price}" ></td>
+	</tr>
+	
+</table>
+
+<button>更新</button>
+</form>
 </body>
 </html>
