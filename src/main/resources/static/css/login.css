@@ -64,6 +64,26 @@ width: 10%;
 margin-left: 50%;
 }
 
+.slide-image {
+	width: 10%;
+    position: relative;
+    animation: slideRight 2s ease forwards; /* 2秒かけて右にスライド */
+}
+
+@keyframes slideRight {
+    from {
+        left: 0;
+    }
+    to {
+        left: 400px;
+    }
+}
+
+.yokonarabi {
+    display: flex;
+    align-items: center; /* 上下中央揃えしたい場合 */
+    
+}
 .calendar-table{
 	table-layout: fixed;
 	margin:0 auto;

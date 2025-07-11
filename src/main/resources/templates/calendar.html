@@ -10,17 +10,23 @@
 	<h2 th:text="${year}+'年'+${month}+'月の家計簿'"></h2>
 
 	<div style="background-color: burlywood;">
-		<p>[[${@accountModel.name}]]さんの収支記録</p>
+		<p>[[${@accountModel.name}]]さんの収支記録     </p>
 	
 		</div>
 		
 		<a href="/record/add" class="button2">新規登録</a>
 		<a href="/users/login" class="button2">ログアウト</a>
+		<a>今月の支出:[[${totalPrice}]]円</a>
 		
-	
+		
+		<div class="yokonarabi">
+		<img src="/img/sample.png" class="slide-image">
 	<div class="tooltipBlock">
 		<p id="toolTip">今日も記録頑張ろう！</p>
-	<img th:src="@{/img/2728.png}" class="img" id="tooltipImg">
+		
+		<img th:src="@{/img/2728.png}" class="img" id="tooltipImg">
+	
+	</div>
 	</div>
 
 <!--	<script>-->

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -72,6 +73,16 @@ public class KakeiCalendarController {
 		int firstDayOfWeek = firstDay.getDayOfWeek().getValue();
 		firstDayOfWeek = (firstDayOfWeek == 7) ? 0 : firstDayOfWeek;
 		int daysInMonth = firstDay.lengthOfMonth();
+
+		//priceの合計金額計算をする
+		//streamで処理をまとめる、mapToIntでIntegerをIntに、
+		List<Integer> priceList = kakeiRepository.findPricesByUserIdAndDateBetween(
+				userId, firstDay, nextMonth.minusDays(1));
+		int totalPrice = priceList.stream()
+				.filter(Objects::nonNull)
+				.mapToInt(Integer::intValue)
+				.sum();
+		model.addAttribute("totalPrice", totalPrice);
 
 		model.addAttribute("year", currentYear);
 		model.addAttribute("month", currentMonth);
