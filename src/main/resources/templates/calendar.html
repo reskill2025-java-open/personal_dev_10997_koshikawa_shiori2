@@ -6,20 +6,42 @@
 <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
-	<h3 th:text="${year}+'年'+${month}+'月の家計簿'"></h3>
-	<p>[[${@accountModel.name}]]さんの収支記録</p>
+	<script src="js/javaScript.js"></script>
+	<h2 th:text="${year}+'年'+${month}+'月の家計簿'"></h2>
+
+	<div style="background-color: burlywood;">
+		<p>[[${@accountModel.name}]]さんの収支記録</p>
+	
+		</div>
+		
+		<a href="/record/add" class="button2">新規登録</a>
+		<a href="/users/login" class="button2">ログアウト</a>
+		
+	
+	<div class="tooltipBlock">
+		<p id="toolTip">今日も記録頑張ろう！</p>
+	<img th:src="@{/img/2728.png}" class="img" id="tooltipImg">
+	</div>
+
+<!--	<script>-->
+<!--	  function ShowAlert() {-->
+<!--	    alert("今日も家計簿つけよう！");-->
+<!--	  }-->
+<!--	  window.onload=ShowAlert;-->
+<!--	</script>-->
+		
 	
 	
-	<div style="margin-left: 10px;">
-		<a th:href="@{/calendar(year=${prevYear}, month=${prevMonth})}">← 前の月</a>
-		       
-		       <a th:href="@{/calendar(year=${nextYear}, month=${nextMonth})}">次の月 →</a>
+	<div style="display: flex; justify-content: space-between;">
+		<a  th:href="@{/calendar(year=${prevYear}, month=${prevMonth})}">← 前の月</a>    
+		<a  th:href="@{/calendar(year=${nextYear}, month=${nextMonth})}">次の月 →</a>
 			   </div>
+			   
+			   
 	
-			   <div class="calendar-container">
 	<table class="calendar-table" border="6"  >
 	<tr>
-		<th style="color:rgb(255, 128, 128)">日</th>
+		<th style="color:rgb(255, 128, 128)" >日</th>
 		<th>月</th>
 		<th>火</th>
 		<th>水</th>
@@ -40,11 +62,10 @@
 <!--							 日付と支出-->
 <div th:if="${cellIndex>=firstDayOfWeek and dateNum <=daysInMonth}">
 	<a th:href="@{/dailyList(year=${year}, month=${month}, day=${dateNum})}" th:text="${dateNum}"></a>
-	
-<br>
+	<br>
 
-<div th:each="expense : ${expenses}" th:if="${expense.date.date==(dateNum)}"  >
-	\[[${expense.price}]]
+<div th:each="expense : ${expenses}" th:if="${expense.date.date==(dateNum)}" style="color: orangered;" >
+	<p>￥[[${expense.price}]]</p>
        </div>
 <!--	   カテゴリーを出す-->
 	 
@@ -60,10 +81,8 @@
 </tr>
 		
 </table>
-</div>
-<div style="text-align: right;">
-<a href="/users/login">ログアウト</a>
-</div>
+<br>
+
 
 </body>
 

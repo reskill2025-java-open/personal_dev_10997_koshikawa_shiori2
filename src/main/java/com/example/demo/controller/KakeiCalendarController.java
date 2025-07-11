@@ -31,6 +31,9 @@ public class KakeiCalendarController {
 	@Autowired
 	KakeiModel kakeiModel;
 
+	//	@Autowired
+	//	Kakei kakei;
+
 	@Autowired
 	KakeiboWithCategoryRepository kakeiboWithCategoryRepository;
 

@@ -1,0 +1,96 @@
+@charset "UTF-8";
+h2{
+	text-align: center;
+	color: peru;
+}
+
+.record-header {
+    display: flex;
+	justify-content: space-between; /* 左右に振り分け */
+    align-items: center; /* 垂直中央揃え */
+}
+
+p{
+	text-align: center;
+}
+
+.buttonNew{
+	display: inline-block; 
+	padding: 5px 10px;
+	   background-color:burlywood; 
+	   color: white;
+	   border: none;
+	   border-radius: 5px;
+	   font-size: 14px;
+	   cursor: pointer;
+	   text-decoration: none;     /* aタグの下線を消す */
+	   text-align: center;
+}
+
+.detail-table{
+	margin:0 auto;
+	table-layout: fixed;
+		border-width: 8px;
+		border-radius: 15px;
+		border:1px solid #d1bf97;
+		padding: 5px;
+		border-collapse:collapse;
+		width: 70%;
+		
+}
+
+
+
+
+button, .button {
+    display: block;
+    margin: 5px auto;
+    padding: 5px 10px;
+    background-color:burlywood; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;     /* aタグの下線を消す */
+    text-align: center;
+}
+
+a{
+	--arrow-color:#333; /* 矢印の色を設定 */
+
+	position: relative; /* 疑似要素を位置指定するための基準 */
+	  color: var(--arrow-color); /* 文字色を矢印の色と統一 */
+	  text-decoration: none; /* 下線を非表示 */
+}
+
+
+
+th{
+background-color:  #eedcb3;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size: 14px;
+	
+}
+
+.text-size input,
+.text-size select {
+    flex: 1;
+    min-width: 0; /* はみ出し防止 */
+}
+
+.text-size{
+	display:flex;
+	width: 100%;
+
+}
+
+
+
+td{
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+		font-size: 14px;
+		text-align: center;
+		  
+	
+}

@@ -2,33 +2,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/style2.css}">
 <title>Insert title here</title>
 </head>
 <body>
-<h3>家計詳細</h3>
+<h2>家計詳細</h2>
 
-<h4>[[${year}]]年[[${month}]]月[[${day}]]日の収支記録</h4>
-<table border="1">
+<h4 class="record-header"><span>[[${year}]]年[[${month}]]月[[${day}]]日の収支記録</span><a  href="/record/add" class="buttonNew">新規追加</a></h4>
+
+
+
+<table class="detail-table" border="1">
 
 		   <tr>
-			<td>
+			<th>
 				カテゴリ
-			</td>
-			<td>
+			</th>
+			<th>
 			タイトル	
-			</td>
-			<td>
+			</th>
+			<th>
 				詳細
-			</td>
-			<td>
+			</th>
+			<th>
 				価格
-			</td>
-			<td>
+			</th>
+			<th>
 				更新
-			</td>
-			<td>
+			</th>
+			<th>
 				削除
-			</td>
+			</th>
 		   </tr>
 	   
 	   <tr th:each="kakeibo : ${kakeiboData}">
@@ -59,10 +63,11 @@
 	   </tr>
 	   
 	   </table>
-	   
-	   <a href="/calendar" class="button">戻る</a>
-	   
+	 
+	   <div style="text-align: right;">
 
-	   <a href="/record/add" class="button">追加</a>
+	   <a href="/calendar">戻る</a>
+	  
+	   </div>
 </body>
 </html>

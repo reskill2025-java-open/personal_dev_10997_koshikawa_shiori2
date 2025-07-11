@@ -1,12 +1,22 @@
 @charset "UTF-8";
 
-h3{
+h2{
 	text-align: center;
 	color: peru;
 }
 
 p{
 	text-align: center;
+}
+
+
+a{
+	--arrow-color:#333; /* 矢印の色を設定 */
+	  position: relative; /* 疑似要素を位置指定するための基準 */
+	  padding: 0 2.5em .5em .5em; /* 内側の余白（右に矢印部分を空ける） */
+	  color: var(--arrow-color); /* 文字色を矢印の色と統一 */
+	  text-decoration: none; /* 下線を非表示 */
+	  font-size: 100%;
 }
 button, .button {
     display: block;
@@ -22,43 +32,116 @@ button, .button {
     text-align: center;
 }
 
+.button2{
+
+	    margin: 10px auto;
+	    padding: 5px 10px;
+	padding: 10px 20px;
+	    background-color:burlywood; /* 緑 */
+	    color: white;
+	    border: none;
+	    border-radius: 5px;
+	    font-size: 16px;
+	    cursor: pointer;
+	    text-decoration: none;     /* aタグの下線を消す */
+	    text-align: center;
+}
+
 .box {
     text-align: center; 
 }
 
 .box input[type="text"] {
-    width: 200px;
+    width: 40%;
     margin: 8px 0;     /* 上下の余白 */
     padding: 8px;       /* 内側の余白 */
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
-
-.calendar-containar{
-	text-align:center;
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.img{
+width: 10%;
+margin-left: 50%;
 }
 
-
 .calendar-table{
+	table-layout: fixed;
 	margin:0 auto;
-	background-color:navajowhite;
-	border-color:beige;
-	border-radius: 10px;
-	overflow: hidden;
+	border-width: 8px;
+	border-radius: 15px;
+	border:1px solid #eedcb3;
+	padding: 5px;
 	border-collapse:collapse;
+	width: 70%;
+	
 	
 }
 
+
+.tooltipBlock {
+    position: relative;
+}
+p#toolTip {
+    display: none;
+    position: absolute;
+    top: -55px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    background: #545454;
+    padding: 4px 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.8;
+    animation: fadeIn 0.6s;
+    color: #FFF;
+    border-radius: 3px;
+    filter: drop-shadow(0px 1px 4px #aaa);
+}
+p#toolTip:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border: 8px solid transparent;
+  border-top: 8px solid #545454;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+.tooltipBlock:hover p#toolTip {
+    display: block;
+}
+
+
 th{
+
+	border-right:2px solid #eedcb3;
 	padding: 25px;
-	background-color:peru;
+	background-color :#faf3e5;
+	vertical-align: top;
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size: 14px;
 }
 
 td{
+	
+	border-right:2px solid #eedcb3;
 padding: 25px;
-border-color: solid ghostwhite;
+vertical-align: top;
+font-weight: bold;
+background-color: #fdf9f2 ;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+td,th{
+	height: 70px; /* 調整可能 */
+	  overflow: hidden;
+	  font-size:100%
 }
 

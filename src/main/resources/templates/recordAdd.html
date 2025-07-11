@@ -2,22 +2,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>新規登録</title>
+<link rel="stylesheet" th:href="@{/css/style2.css}">
 </head>
 <body>
-<h3>新規登録</h3>
+<h2>新規登録</h2>
 <form action="/record/add" method="post">
-[[${message}]]
+<p>[[${message}]]</p>
 	
-	<table border="1">
+	<table border="1" class="detail-table">
 	<tr>
 		<th>日付</th>
-		<td><input type="date" name="date"></td>
+		<td><div class="text-size"><input type="date" name="date"></div></td>
 	</tr>
 	
 	<tr>
 		<th>項目</th>
-		<td>		<select name="categoryId">
+		<td ><div class="text-size"><select name="categoryId">
 		    <option value="1">食費</option>
 		    <option value="2">家賃</option>
 		    <option value="3">交通費</option>
@@ -25,30 +26,32 @@
 			<option value="5">交際費</option>
 			<option value="6">ガソリン代</option>
 		
-		</select></td>
+		</select></div></td>
 	</tr>
 	<tr>
 		<th>
 			タイトル
 		</th>
-		<td><input type="text" name="title"></td>
+		<td><div class="text-size"><input type="text" name="title"></div></td>
 	</tr>
 	<tr>
 		<th>詳細</th>
-		<td><input type="text" name="detail"></td>
+		<td><div class="text-size"><input type="text" name="detail"></div></td>
 	</tr>
 	<tr>
 		<th>
 			金額
 		</th>
-		<td><input type="text" name="price"></td>
+		<td><div class="text-size"><input type="text" name="price"></div></td>
 	</tr>
 	
 </table>
 <button>追加</button>
 </form>
 
-<a href="/calendar" class="button">戻る</a>
+<div style="text-align: right;">
+<a href="/calendar">戻る</a>
+</div>
 
 </body>
 </html>
