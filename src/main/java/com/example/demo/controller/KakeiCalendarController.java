@@ -75,7 +75,7 @@ public class KakeiCalendarController {
 		int daysInMonth = firstDay.lengthOfMonth();
 
 		//priceの合計金額計算をする
-
+		//streamで処理をまとめる、mapToIntでIntegerをIntに、
 		List<Integer> priceList = kakeiRepository.findPricesByUserIdAndDateBetween(
 				userId, firstDay, nextMonth.minusDays(1));
 		int totalPrice = priceList.stream()
