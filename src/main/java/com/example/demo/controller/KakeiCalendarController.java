@@ -32,9 +32,6 @@ public class KakeiCalendarController {
 	@Autowired
 	KakeiModel kakeiModel;
 
-	//	@Autowired
-	//	Kakei kakei;
-
 	@Autowired
 	KakeiboWithCategoryRepository kakeiboWithCategoryRepository;
 
@@ -75,7 +72,7 @@ public class KakeiCalendarController {
 		int daysInMonth = firstDay.lengthOfMonth();
 
 		//priceの合計金額計算をする
-//streamで処理をまとめる、mapToIntでIntegerをIntに、
+		//streamで処理をまとめる、mapToIntでIntegerをIntに、
 		List<Integer> priceList = kakeiRepository.findPricesByUserIdAndDateBetween(
 				userId, firstDay, nextMonth.minusDays(1));
 		int totalPrice = priceList.stream()
@@ -129,11 +126,19 @@ public class KakeiCalendarController {
 			@RequestParam(name = "categoryId", defaultValue = "") Integer categoryId,
 			@RequestParam(name = "title", defaultValue = "") String title,
 			@RequestParam(name = "detail", defaultValue = "") String detail,
-			@RequestParam(name = "price", defaultValue = "") Integer price,
+			@RequestParam(name = "price", defaultValue = "") String priceStr,
 			Model model) {
 
-		if (date == null || categoryId == null || title.equals("") || detail.equals("") || price == null) {
+		if (date == null || categoryId == null || title.equals("") || detail.equals("") || priceStr.equals("")) {
 			model.addAttribute("message", "空欄があります");
+			return "recordAdd";
+		}
+
+		Integer price = null;
+		try {
+			price = Integer.parseInt(priceStr);
+		} catch (NumberFormatException e) {
+			model.addAttribute("message", "金額は数字で入力してください");
 			return "recordAdd";
 		}
 
@@ -178,7 +183,7 @@ public class KakeiCalendarController {
 			@RequestParam(name = "categoryId", defaultValue = "") Integer categoryId,
 			@RequestParam(name = "title", defaultValue = "") String title,
 			@RequestParam(name = "detail", defaultValue = "") String detail,
-			@RequestParam(name = "price", defaultValue = "") Integer price, Model model) {
+			@RequestParam(name = "price", defaultValue = "") String priceStr, Model model) {
 
 		Integer userId = accountModel.getId();
 		Kakei kakei = kakeiRepository.findById(id).get();
@@ -202,9 +207,18 @@ public class KakeiCalendarController {
 			detail = kakei.getDetail();
 			hasError = true;
 		}
-		if (price == null) {
-			price = kakei.getPrice();
+		if (priceStr == null || priceStr.isEmpty()) {
+			priceStr = kakei.getPrice().toString();
 			hasError = true;
+		}
+
+		Integer price = null;
+		try {
+			price = Integer.parseInt(priceStr);
+		} catch (NumberFormatException e) {
+			model.addAttribute("message", "金額は数字で入力してください");
+			model.addAttribute("kakei", kakei);
+			return "recordEdit";
 		}
 
 		// 最新の値を再セット

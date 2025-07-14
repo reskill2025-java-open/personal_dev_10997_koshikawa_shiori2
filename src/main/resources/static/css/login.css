@@ -5,15 +5,104 @@ h2{
 	color: peru;
 }
 
+
+.calendar-button {
+  display: inline-block;
+  justify-content: flex-start; 
+  padding:8% ;
+  background-color: #fdf9f2;
+  color:peru;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.calendar-cell {
+  position: relative;
+  padding: 0;
+}
+
+.calendar-button:hover {
+  background-color:burlywood;
+}
+
+.calendar-button p{
+	margin: 0;
+	font-size: 12px;
+	color: orangered;
+}
+
 p{
 	text-align: center;
 }
 
+:root {
+  --arrow-color: #333;
+}
 
-a{	  padding: 0 2.5em .5em .5em; /* 内側の余白（右に矢印部分を空ける） */
-	  color: var(--arrow-color); /* 文字色を矢印の色と統一 */
-	  text-decoration: none; /* 下線を非表示 */
-	  font-size: 18px;
+.content a {
+  padding: 0 2.5em 0.5em 0.5em;
+  color: var(--arrow-color);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block;
+  transition: 0.3s;
+  position: relative;
+}
+
+.content a::after {
+  content: "→";
+  position: absolute;
+  right: 0.5em;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--arrow-color);
+  transition: 0.3s;
+}
+
+.content a:hover {
+  color: #fff;
+  background-color:peru ;
+}
+
+.content a:hover::after {
+  color: #fff;
+}
+
+
+.content-b a {
+  padding: 0 1.5em 0.5em 0.5em;
+  color: var(--arrow-color);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block;
+  transition: 0.3s;
+  position: relative;
+}
+
+.content-b a::after {
+  position: absolute;
+  right: 0.5em;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.3s;
+}
+
+.content-b a:hover {
+  color: #fff;
+  background-color:peru ;
+}
+
+.content-b a:hover::after {
+  color: #fff;
 }
 
 
@@ -34,9 +123,7 @@ button, .button {
 
 .button2{
 
-	    margin: 10px auto;
-	    padding: 5px 10px;
-	padding: 10px 20px;
+	    padding: 10px 20px;
 	    background-color:burlywood; /* 緑 */
 	    color: white;
 	    border: none;
@@ -90,7 +177,6 @@ margin-left: 50%;
 	border-width: 8px;
 	border-radius: 15px;
 	border:1px solid #eedcb3;
-	padding: 5px;
 	border-collapse:collapse;
 	width: 70%;
 	
@@ -100,6 +186,7 @@ margin-left: 50%;
 
 .tooltipBlock {
     position: relative;
+	padding: 0;
 }
 p#toolTip {
     display: none;
@@ -139,11 +226,9 @@ p#toolTip:before {
 
 
 th{
-
 	border-right:2px solid #eedcb3;
-	padding: 25px;
 	background-color :#faf3e5;
-	vertical-align: top;
+	vertical-align: auto;
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	font-size: 14px;
 }
@@ -151,7 +236,6 @@ th{
 td{
 	
 	border-right:2px solid #eedcb3;
-padding: 25px;
 vertical-align: top;
 font-weight: bold;
 background-color: #fdf9f2 ;
@@ -160,8 +244,11 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 td,th{
+	padding: 0;
 	height: 70px; /* 調整可能 */
 	  overflow: hidden;
-	  font-size:100%
+	  font-size:100%;
+	   
+	    
 }
 

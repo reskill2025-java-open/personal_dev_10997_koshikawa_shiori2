@@ -10,13 +10,13 @@
 	<h2 th:text="${year}+'年'+${month}+'月の家計簿'"></h2>
 
 	<div style="background-color: burlywood;">
-		<p>[[${@accountModel.name}]]さんの収支記録     </p>
+		<h3 style="text-align: center;">[[${@accountModel.name}]]さんの収支記録     </h3>
 	
 		</div>
 		
 		<a href="/record/add" class="button2">新規登録</a>
 		<a href="/users/login" class="button2">ログアウト</a>
-		<a>今月の支出:[[${totalPrice}]]円</a>
+		<h3>今月の支出:[[${totalPrice}]]円</h4>
 		
 		
 		<div class="yokonarabi">
@@ -38,7 +38,7 @@
 		
 	
 	
-	<div style="display: flex; justify-content: space-between;">
+	<div style="display: flex; justify-content: space-between;" class="content-b">
 		<a  th:href="@{/calendar(year=${prevYear}, month=${prevMonth})}">← 前の月</a>    
 		<a  th:href="@{/calendar(year=${nextYear}, month=${nextMonth})}">次の月 →</a>
 			   </div>
@@ -56,32 +56,29 @@
 		<th style="color:skyblue">土</th>
 	</tr>
 		<tr th:each="week:${#numbers.sequence(1,6)}">
-			<td th:each="dayOfWeek : ${#numbers.sequence(0, 6)}"
-			        th:with="cellIndex=${(week - 1) * 7 + dayOfWeek},
-			                 dateNum=${cellIndex - firstDayOfWeek + 1}">
-							 
-<!--							 空白セル-->
-							 <div th:if="${cellIndex<firstDayOfWeek or dateNum>daysInMonth}">
-								&nbsp;
-							 </div>
-							 
-<!--							 日付と支出-->
-<div th:if="${cellIndex>=firstDayOfWeek and dateNum <=daysInMonth}">
-	<a th:href="@{/dailyList(year=${year}, month=${month}, day=${dateNum})}" th:text="${dateNum}"></a>
-	<br>
+			<td class="calendar-cell"
+			    th:each="dayOfWeek : ${#numbers.sequence(0, 6)}"
+			    th:with="cellIndex=${(week - 1) * 7 + dayOfWeek},
+			             dateNum=${cellIndex - firstDayOfWeek + 1}">
 
-<div th:each="expense : ${expenses}" th:if="${expense.date.date==(dateNum)}" style="color: orangered;" >
-	<p>￥[[${expense.price}]]</p>
-       </div>
-<!--	   カテゴリーを出す-->
-	 
-</div>
+			  <!-- 空白セル -->
+			  <div th:if="${cellIndex < firstDayOfWeek or dateNum > daysInMonth}">&nbsp;</div>
 
+			  <!-- ボタンセル -->
+			  <a th:if="${cellIndex >= firstDayOfWeek and dateNum <= daysInMonth}"
+			     th:href="@{/dailyList(year=${year}, month=${month}, day=${dateNum})}"
+			     class="calendar-button">
 
+			    <span th:text="${dateNum}" style="font-weight: bold;"></span>
 
+			    <span th:each="expense : ${expenses}"
+			          th:if="${expense.date.date == dateNum}"
+			          style="color: orangered; display: block;">
+					  ￥[[${expense.price}]]
+			    </span>
 
-
-</td>
+			  </a>
+			</td>
 
 
 </tr>
