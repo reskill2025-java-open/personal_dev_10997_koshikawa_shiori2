@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -64,6 +65,29 @@ public class KakeiCalendarController {
 		Integer userId = accountModel.getId();
 		java.sql.Date sqlFirstDay = java.sql.Date.valueOf(firstDay);
 		java.sql.Date sqlEndDay = java.sql.Date.valueOf(nextMonth.minusDays(1));
+
+		//今週、先週の範囲を決める
+		LocalDate thisMonday = today.with(DayOfWeek.MONDAY);
+		LocalDate thisSunday = thisMonday.plusDays(6);
+
+		LocalDate lastMonday = thisMonday.minusWeeks(1);
+		LocalDate lastSunday = lastMonday.plusDays(6);
+		Integer thisWeekTotal = kakeiRepository.getTotalByDateRange(userId, thisMonday, thisSunday);
+		Integer lastWeekTotal = kakeiRepository.getTotalByDateRange(userId, lastMonday, lastSunday);
+		thisWeekTotal = thisWeekTotal != null ? thisWeekTotal : 0;
+		lastWeekTotal = lastWeekTotal != null ? lastWeekTotal : 0;
+
+		int diff = thisWeekTotal - lastWeekTotal;
+		double percent = lastWeekTotal == 0 ? 0 : (diff * 100.0 / lastWeekTotal);
+
+		model.addAttribute("diff", diff);
+		model.addAttribute("percent", percent);
+		model.addAttribute("thisWeekTotal", thisWeekTotal);
+		model.addAttribute("lastWeekTotal", lastWeekTotal);
+		model.addAttribute("thisMonday", thisMonday);
+		model.addAttribute("thisSunday", thisSunday);
+		model.addAttribute("lastMonday", lastMonday);
+		model.addAttribute("lastSunday", lastSunday);
 
 		List<KakeiboWithCategory> expenses = kakeiboWithCategoryRepository.findByUserIdAndDateBetween(userId,
 				sqlFirstDay, sqlEndDay);

@@ -17,17 +17,39 @@
 		<a href="/record/add" class="button2">新規登録</a>
 		<a href="/users/login" class="button2">ログアウト</a>
 		<h3>今月の支出:[[${totalPrice}]]円</h4>
+			
+			<div class="yokonarabi">
+				<img src="/img/sample.png" class="slide-image">
+			<div class="tooltipBlock">
+				<p id="toolTip">今日も記録頑張ろう！</p>
+				
+				<img th:src="@{/img/2728.png}" class="img" id="tooltipImg">
+
+			</div>
+			</div>
+			
+			<table border="1" class="calendar-table">
+				<tr>
+					<th>
+			<h3>今週 vs 先週 支出比較</h3>
+			</th>
+				</tr>
+				<tr>
+					<td>
+			   <p>
+			       今週 ( [[${thisMonday}]] ~ [[${thisSunday}]] ): ￥[[${thisWeekTotal}]]<br>
+			       先週 ( [[${lastMonday}]] ~ [[${lastSunday}]] ): ￥ <span style="color:red">[[${lastWeekTotal}]]</span><br>
+			       差額: <span style="color: red;"  th:text="${diff >= 0 ? '+' + diff : diff}"></span> 円<br>
+			       先週比: <span style="color: red;" th:text="${percent >= 0 ? '+' + #numbers.formatDecimal(percent, 1, 1) : #numbers.formatDecimal(percent, 1, 1)}"></span> %
+			   </p>
+			   </td>
+			   </tr>
+			   </table>
+			   <br>
+
 		
 		
-		<div class="yokonarabi">
-		<img src="/img/sample.png" class="slide-image">
-	<div class="tooltipBlock">
-		<p id="toolTip">今日も記録頑張ろう！</p>
-		
-		<img th:src="@{/img/2728.png}" class="img" id="tooltipImg">
 	
-	</div>
-	</div>
 
 <!--	<script>-->
 <!--	  function ShowAlert() {-->

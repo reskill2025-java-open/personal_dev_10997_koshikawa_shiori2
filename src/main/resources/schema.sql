@@ -1,6 +1,7 @@
 drop table if exists accounts;
 drop table if exists kakeibo cascade;
 drop table if exists categories;
+drop table if exists incom;
 
 create table accounts(
 id serial primary key,
@@ -10,6 +11,16 @@ id serial primary key,
 
 
 create table kakeibo(
+	id serial primary key,
+	user_id int,
+	Date date,
+	category_id int,
+	title text,
+	detail text,
+	price int
+);
+
+create table incom(
 	id serial primary key,
 	user_id int,
 	Date date,
@@ -37,4 +48,6 @@ select
 from
     kakeibo k
     left join categories c on k.category_id = c.id;
+
+
 
