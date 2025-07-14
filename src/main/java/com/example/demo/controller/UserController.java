@@ -53,6 +53,11 @@ public class UserController {
 			return "signup";
 		}
 
+		if (password.length() < 8) {
+			model.addAttribute("message", "パスワードは8文字以上で入力してください");
+			return "signup";
+		}
+
 		Account existingAccounts = accountRepository.findByName(name);
 		if (existingAccounts != null) {
 			model.addAttribute("message", "この名前は既に使用されています");

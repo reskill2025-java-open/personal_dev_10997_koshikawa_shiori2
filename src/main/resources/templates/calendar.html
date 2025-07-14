@@ -10,7 +10,7 @@
 	<h2 th:text="${year}+'年'+${month}+'月の家計簿'"></h2>
 
 	<div style="background-color: burlywood;">
-		<h3 style="text-align: center;">[[${@accountModel.name}]]さんの収支記録     </h3>
+		<h3 style="text-align: center;">[[${@accountModel.name}]]さんの家計記録     </h3>
 	
 		</div>
 		
@@ -73,8 +73,17 @@
 
 			    <span th:each="expense : ${expenses}"
 			          th:if="${expense.date.date == dateNum}"
-			          style="color: orangered; display: block;">
-					  ￥[[${expense.price}]]
+			          th:style="'color:'+
+					  (${expense.categoryId}==1 ?'#ff6347':
+					  (${expense.categoryId}==2 ? '#0000cd':
+					  (${expense.categoryId}==3 ? 'darkgreen':
+					  (${expense.categoryId}==4 ? 'brown':
+					  (${expense.categoryId}==5 ? 'gold':
+					  (${expense.categoryId}==6 ? 'deeppink':gray
+					  ))))))" style="display: block;"
+					>
+					<br>
+					￥[[${expense.price}]]
 			    </span>
 
 			  </a>
