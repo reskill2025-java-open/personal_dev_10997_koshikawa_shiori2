@@ -7,7 +7,7 @@
 </head>
 <body>
 	<h2>ログイン画面</h2>
-	<p>[[${message}]]</p>
+	<p style="color:red;">[[${message}]]</p>
 	<form action="/login" method="post">	
 		<div class="box">
 		<input type="text"name="name" placeholder="ユーザ名"><br>
@@ -16,7 +16,7 @@
 		</div>
 	</form>
 	
-	<div style="text-align: right;">
+	<div style="text-align: right;" class="content">
 	<a href="/users/new">新規登録画面へ</a>
 	</div>
 </body>

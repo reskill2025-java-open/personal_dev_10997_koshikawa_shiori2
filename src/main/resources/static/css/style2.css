@@ -12,12 +12,12 @@ p{
 
 .buttonNew{
 	display: inline-block;
-	padding: 5px 10px;
+	padding: 10px 20px;
 	   background-color:burlywood; 
 	   color: white;
 	   border: none;
 	   border-radius: 5px;
-	   font-size: 14px;
+	   font-size: 16px;
 	   cursor: pointer;
 	   text-decoration: none;     /* aタグの下線を消す */
 	   text-align: right;
@@ -65,14 +65,55 @@ button, .button {
     text-align: center;
 }
 
-a{
-	--arrow-color:#333; /* 矢印の色を設定 */
+.button2{
 
-	position: relative; /* 疑似要素を位置指定するための基準 */
-	  color: var(--arrow-color); /* 文字色を矢印の色と統一 */
-	  text-decoration: none; /* 下線を非表示 */
+	    margin: 10px auto;
+	    padding: 5px 10px;
+	padding: 10px 20px;
+	    background-color:burlywood; /* 緑 */
+	    color: white;
+	    border: none;
+	    border-radius: 5px;
+	    font-size: 16px;
+	    cursor: pointer;
+	    text-decoration: none;     /* aタグの下線を消す */
+	    text-align: center;
 }
 
+
+:root {
+  --arrow-color: #333;
+}
+
+.content a {
+  padding: 0 2.5em 0.5em 0.5em;
+  color: var(--arrow-color);
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block;
+  transition: 0.3s;
+  position: relative;
+}
+
+.content a::after {
+  content: "→";
+  position: absolute;
+  right: 0.5em;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--arrow-color);
+  transition: 0.3s;
+}
+
+.content a:hover {
+  color: #fff;
+  background-color: peru;
+}
+
+.content a:hover::after {
+  color: #fff;
+}
 
 
 th{

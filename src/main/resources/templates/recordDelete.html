@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3 style="text-align: center;">⚠本当に削除しますか？</h3>
+	<p style="text-align: center; color: red;">⚠本当に削除しますか？</p>
 	<form th:action="@{/record/delete/{id}(id=${kakei.id})}" method="post">
 	<table class="detail-table" border="1">
 		<tr>

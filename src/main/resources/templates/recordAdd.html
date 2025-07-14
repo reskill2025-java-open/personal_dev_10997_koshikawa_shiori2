@@ -7,8 +7,9 @@
 </head>
 <body>
 <h2>新規登録</h2>
+<p th:text="${message}" style="color: red;"></p>
 <form action="/record/add" method="post">
-<p>[[${message}]]</p>
+
 	
 	<table border="1" class="detail-table2">
 	<tr>
@@ -46,10 +47,12 @@
 	</tr>
 	
 </table>
-<button>追加</button>
+
+<button  class="button2">追加</button>
+
 </form>
 
-<div style="text-align: right;">
+<div style="text-align: right;" class="content">
 <a href="/calendar">戻る</a>
 </div>
 
