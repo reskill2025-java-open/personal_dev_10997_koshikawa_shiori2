@@ -10,14 +10,14 @@ p{
 }
 
 
-a{
-	--arrow-color:#333; /* 矢印の色を設定 */
-	  position: relative; /* 疑似要素を位置指定するための基準 */
-	  padding: 0 2.5em .5em .5em; /* 内側の余白（右に矢印部分を空ける） */
+a{	  padding: 0 2.5em .5em .5em; /* 内側の余白（右に矢印部分を空ける） */
 	  color: var(--arrow-color); /* 文字色を矢印の色と統一 */
 	  text-decoration: none; /* 下線を非表示 */
-	  font-size: 100%;
+	  font-size: 18px;
 }
+
+
+
 button, .button {
     display: block;
     margin: 10px auto;
@@ -52,7 +52,7 @@ button, .button {
 }
 
 .box input[type="text"] {
-    width: 40%;
+    width: 30%;
     margin: 8px 0;     /* 上下の余白 */
     padding: 8px;       /* 内側の余白 */
     font-size: 16px;
@@ -65,7 +65,7 @@ margin-left: 50%;
 }
 
 .slide-image {
-	width: 10%;
+	width: 8%;
     position: relative;
     animation: slideRight 2s ease forwards; /* 2秒かけて右にスライド */
 }
@@ -75,7 +75,7 @@ margin-left: 50%;
         left: 0;
     }
     to {
-        left: 400px;
+        left: 350px;
     }
 }
 
