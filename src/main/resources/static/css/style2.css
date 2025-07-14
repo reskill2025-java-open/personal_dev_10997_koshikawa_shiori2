@@ -4,18 +4,14 @@ h2{
 	color: peru;
 }
 
-.record-header {
-    display: flex;
-	justify-content: space-between; /* 左右に振り分け */
-    align-items: center; /* 垂直中央揃え */
-}
+
 
 p{
 	text-align: center;
 }
 
 .buttonNew{
-	display: inline-block; 
+	display: inline-block;
 	padding: 5px 10px;
 	   background-color:burlywood; 
 	   color: white;
@@ -24,7 +20,7 @@ p{
 	   font-size: 14px;
 	   cursor: pointer;
 	   text-decoration: none;     /* aタグの下線を消す */
-	   text-align: center;
+	   text-align: right;
 }
 
 .detail-table{
@@ -36,6 +32,19 @@ p{
 		padding: 5px;
 		border-collapse:collapse;
 		width: 70%;
+		
+}
+
+.detail-table2{
+	margin:0 auto;
+	table-layout: fixed;
+		border-width: 8px;
+		border-radius: 15px;
+		border:1px solid #d1bf97;
+		padding: 5px;
+		border-collapse:collapse;
+		width: 40%;
+		height: auto;
 		
 }
 
@@ -93,4 +102,8 @@ td{
 		text-align: center;
 		  
 	
+}
+
+h4{
+	text-align: center;
 }
