@@ -11,4 +11,4 @@ INSERT INTO kakeibo(user_id,date,category_id,title,detail,price)values('2','2025
 
 INSERT INTO accounts(name,password) VALUES('越川詩織','shiori0123');
 
-INSERT INTO incom(user_id,date,category_id,title,detail,price)VALUES('1','2025-07-04','1','給与','6月の給与','210000');
+INSERT INTO incom(user_id,date,title,detail,price)VALUES('1','2025-07-04','給与','6月の給与','210000');

@@ -24,7 +24,6 @@ create table incom(
 	id serial primary key,
 	user_id int,
 	Date date,
-	category_id int,
 	title text,
 	detail text,
 	price int
