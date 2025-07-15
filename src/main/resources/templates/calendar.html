@@ -16,7 +16,10 @@
 		
 		<a href="/record/add" class="button2">新規登録</a>
 		<a href="/users/login" class="button2">ログアウト</a>
-		<h3>今月の支出:[[${totalPrice}]]円</h4>
+		<h3>今月の支出:[[${totalPrice}]]円
+			<br>今月の収入:[[${totalIncom}]]円
+		</h3>
+		
 			
 			
 			<div class="yokonarabi">
@@ -73,7 +76,7 @@
 			          th:style="'color:'+
 					  (${expense.categoryId}==1 ?'#ff6347':
 					  (${expense.categoryId}==2 ? '#0000cd':
-					  (${expense.categoryId}==3 ? 'darkgreen':
+					  (${expense.categoryId}==3 ? 'lightgreen':
 					  (${expense.categoryId}==4 ? 'brown':
 					  (${expense.categoryId}==5 ? 'gold':
 					  (${expense.categoryId}==6 ? 'deeppink':gray
@@ -81,7 +84,11 @@
 					>
 					<br>
 					￥[[${expense.price}]]
+					
+					
 			    </span>
+				<span th:each="incom:${incoms}"
+									th:if="${incom.date.date == dateNum}"><br>$[[${incom.price}]]</span>
 
 			  </a>
 			</td>

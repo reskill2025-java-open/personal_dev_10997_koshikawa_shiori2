@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Incom;
 import com.example.demo.entity.Kakei;
 import com.example.demo.entity.KakeiboWithCategory;
 import com.example.demo.model.AccountModel;
 import com.example.demo.model.KakeiModel;
+import com.example.demo.repository.IncomRepository;
 import com.example.demo.repository.KakeiRepository;
 import com.example.demo.repository.KakeiboWithCategoryRepository;
 import com.example.demo.service.KakeiService;
@@ -35,6 +37,9 @@ public class KakeiCalendarController {
 
 	@Autowired
 	KakeiboWithCategoryRepository kakeiboWithCategoryRepository;
+
+	@Autowired
+	IncomRepository incomRepository;
 
 	@Autowired
 	AccountModel accountModel;
@@ -92,6 +97,9 @@ public class KakeiCalendarController {
 
 		List<KakeiboWithCategory> expenses = kakeiboWithCategoryRepository.findByUserIdAndDateBetween(userId,
 				sqlFirstDay, sqlEndDay);
+		//収入を取得する
+		List<Incom> incoms = incomRepository.findByUserIdAndDateBetween(userId, sqlFirstDay, sqlEndDay);
+		model.addAttribute("incoms", incoms);
 
 		//getDayOfWeek 曜日を取得 getValue int型で返す
 		int firstDayOfWeek = firstDay.getDayOfWeek().getValue();
@@ -106,7 +114,7 @@ public class KakeiCalendarController {
 
 		model.addAttribute("weekOfMonth", weekOfMonth);
 
-		//priceの合計金額計算をする
+		//支出の合計金額計算をする
 		//streamで処理をまとめる、mapToIntでIntegerをIntに、
 		List<Integer> priceList = kakeiRepository.findPricesByUserIdAndDateBetween(
 				userId, firstDay, nextMonth.minusDays(1));
@@ -115,6 +123,19 @@ public class KakeiCalendarController {
 				.mapToInt(Integer::intValue)
 				.sum();
 		model.addAttribute("totalPrice", totalPrice);
+
+		//収入の合計金額計算をする
+		//streamで処理をまとめる、mapToIntでIntegerをIntに、
+
+		java.sql.Date sqlLastDay = java.sql.Date.valueOf(nextMonth.minusDays(1));
+
+		List<Integer> incomList = incomRepository.findPricesByUserIdAndDateBetween(
+				userId, sqlFirstDay, sqlLastDay);
+		int totalIncom = incomList.stream()
+				.filter(Objects::nonNull)
+				.mapToInt(Integer::intValue)
+				.sum();
+		model.addAttribute("totalIncom", totalIncom);
 
 		model.addAttribute("year", currentYear);
 		model.addAttribute("month", currentMonth);
@@ -142,13 +163,17 @@ public class KakeiCalendarController {
 
 		LocalDate date = LocalDate.of(year, month, day);
 		Integer userId = accountModel.getId();
-		//その日の価格の合計を取得
+		//その日の支出の合計を取得
 		Integer totalPrice = kakeiRepository.getTotalByDate(userId, date);
 		totalPrice = totalPrice != null ? totalPrice : 0;
 		model.addAttribute("totalPrice", totalPrice);
 
+		//kakeibo Entityのデータを取得
 		model.addAttribute("kakeiboData",
 				kakeiboWithCategoryRepository.findByUserIdAndDate(userId, date));
+
+		//Iocom Entityのデータを取得
+		model.addAttribute("incomData", incomRepository.findByUserIdAndDate(userId, date));
 		return "dailyList";
 	}
 

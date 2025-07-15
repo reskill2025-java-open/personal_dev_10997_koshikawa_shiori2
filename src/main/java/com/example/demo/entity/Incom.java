@@ -1,6 +1,6 @@
 package com.example.demo.entity;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,20 +32,12 @@ public class Incom {
 		this.userId = userId;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
-	}
-
-	public Integer getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(Integer categoryId) {
-		this.categoryId = categoryId;
 	}
 
 	public String getTitle() {
@@ -75,10 +67,7 @@ public class Incom {
 	@Column(name = "user_id")
 	private Integer userId;
 
-	private LocalDate date;
-
-	@Column(name = "category_id")
-	private Integer categoryId;
+	private java.sql.Date date;
 
 	private String title;
 

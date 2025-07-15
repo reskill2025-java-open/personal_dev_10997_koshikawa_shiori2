@@ -6,55 +6,58 @@
 <link rel="stylesheet" th:href="@{/css/style2.css}">
 </head>
 <body>
-<h2>新規登録</h2>
-<p th:text="${message}" style="color: red;"></p>
-<form action="/record/add" method="post">
+	<body>
+	<h2>新規登録</h2>
+	
+	<p th:text="${message}" style="color: red;"></p>
+	<form action="/record/add" method="post">
 
-	
-	<table border="1" class="detail-table2">
-	<tr>
-		<th>日付</th>
-		<td><div class="text-size"><input type="date" name="date"></div></td>
-	</tr>
-	
-	<tr>
-		<th>項目</th>
-		<td ><div class="text-size"><select name="categoryId">
-		    <option value="1">食費</option>
-		    <option value="2">家賃</option>
-		    <option value="3">交通費</option>
-			<option value="4">雑費</option>
-			<option value="5">交際費</option>
-			<option value="6">ガソリン代</option>
 		
-		</select></div></td>
-	</tr>
-	<tr>
-		<th>
-			タイトル
-		</th>
-		<td><div class="text-size"><input type="text" name="title"></div></td>
-	</tr>
-	<tr>
-		<th>詳細</th>
-		<td><div class="text-size"><input type="text" name="detail"></div></td>
-	</tr>
-	<tr>
-		<th>
-			金額
-		</th>
-		<td><div class="text-size"><input type="text" name="price"></div></td>
-	</tr>
-	
-</table>
+		<table border="1" class="detail-table2">
+		<tr>
+			<th>日付</th>
+			<td><div class="text-size"><input type="date" name="date"></div></td>
+		</tr>
+		
+		<tr>
+			<th>項目</th>
+			<td ><div class="text-size"><select name="categoryId">
+			    <option value="1">食費</option>
+			    <option value="2">家賃</option>
+			    <option value="3">交通費</option>
+				<option value="4">雑費</option>
+				<option value="5">交際費</option>
+				<option value="6">ガソリン代</option>
+			
+			</select></div></td>
+		</tr>
+		<tr>
+			<th>
+				タイトル
+			</th>
+			<td><div class="text-size"><input type="text" name="title"></div></td>
+		</tr>
+		<tr>
+			<th>詳細</th>
+			<td><div class="text-size"><input type="text" name="detail"></div></td>
+		</tr>
+		<tr>
+			<th>
+				金額
+			</th>
+			<td><div class="text-size"><input type="text" name="price"></div></td>
+		</tr>
+		
+	</table>
 
-<button  class="button2">追加</button>
+	<button  class="button2">追加</button>
 
-</form>
+	</form>
 
-<div style="text-align: right;" class="content">
-<a href="/calendar">戻る</a>
-</div>
+	<div style="text-align: right;" class="content">
+	<a href="/calendar">戻る</a>
+	</div>
 
+	</body>
 </body>
 </html>
