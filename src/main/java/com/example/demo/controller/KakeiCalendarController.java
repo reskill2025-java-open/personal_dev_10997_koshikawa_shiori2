@@ -91,8 +91,12 @@ public class KakeiCalendarController {
 
 		List<KakeiboWithCategory> expenses = kakeiboWithCategoryRepository.findByUserIdAndDateBetween(userId,
 				sqlFirstDay, sqlEndDay);
+
+		//getDayOfWeek 曜日を取得 getValue int型で返す
 		int firstDayOfWeek = firstDay.getDayOfWeek().getValue();
 		firstDayOfWeek = (firstDayOfWeek == 7) ? 0 : firstDayOfWeek;
+
+		//月の日数を計算
 		int daysInMonth = firstDay.lengthOfMonth();
 
 		//priceの合計金額計算をする

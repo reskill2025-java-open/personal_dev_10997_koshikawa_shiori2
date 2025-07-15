@@ -30,7 +30,7 @@ public class UserController {
 	}
 
 	//空欄か、passwordとpassword_confirmが一致しない時エラーを表示
-	@PostMapping("/users/add")
+	@PostMapping("/users/new")
 	public String redirect_confirm(@RequestParam(name = "name") String name,
 			@RequestParam(name = "password") String password,
 			@RequestParam(name = "password_confirm") String password_confirm, Model model) {
@@ -41,8 +41,8 @@ public class UserController {
 			return "signup";
 		}
 
-		if (password == null || password.length() == 0) {
-			model.addAttribute("message", "パスワードを入力してください");
+		if (password == null || password.length() == 0 || password_confirm == null || password_confirm.length() == 0) {
+			model.addAttribute("message", "パスワードを正しく入力してください");
 
 			return "signup";
 		}
@@ -76,7 +76,7 @@ public class UserController {
 		return "signin";
 	}
 
-	@GetMapping("/users/add")
+	@PostMapping("/users/add")
 	public String add(@RequestParam(name = "name") String name,
 			@RequestParam(name = "password") String password, Model model) {
 		Account account = new Account(name, password);
