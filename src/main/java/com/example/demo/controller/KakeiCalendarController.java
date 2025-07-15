@@ -52,6 +52,7 @@ public class KakeiCalendarController {
 	public String index(@RequestParam(value = "year", required = false) Integer year,
 			@RequestParam(value = "month", required = false) Integer month, Model model) {
 		LocalDate today = LocalDate.now();
+		model.addAttribute("today", today);
 
 		//nullの場合は今日の年月を取得
 		int currentYear = (year != null) ? year : today.getYear();
@@ -141,7 +142,11 @@ public class KakeiCalendarController {
 
 		LocalDate date = LocalDate.of(year, month, day);
 		Integer userId = accountModel.getId();
-		System.out.println(userId);
+		//その日の価格の合計を取得
+		Integer totalPrice = kakeiRepository.getTotalByDate(userId, date);
+		totalPrice = totalPrice != null ? totalPrice : 0;
+		model.addAttribute("totalPrice", totalPrice);
+
 		model.addAttribute("kakeiboData",
 				kakeiboWithCategoryRepository.findByUserIdAndDate(userId, date));
 		return "dailyList";

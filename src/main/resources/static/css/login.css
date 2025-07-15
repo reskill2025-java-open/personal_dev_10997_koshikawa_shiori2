@@ -176,6 +176,12 @@ margin-left: 50%;
 	
 }
 
+.today-mark{
+	background-color:wheat;
+	border-radius: 8px;
+	display: inline-block;
+}
+
 
 .tooltipBlock {
     position: relative;

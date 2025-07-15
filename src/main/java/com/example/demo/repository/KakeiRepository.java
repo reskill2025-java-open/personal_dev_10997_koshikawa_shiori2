@@ -20,4 +20,6 @@ public interface KakeiRepository extends JpaRepository<Kakei, Integer> {
 	Integer getTotalByDateRange(@Param("userId") Integer userId, @Param("start") LocalDate start,
 			@Param("end") LocalDate end);
 
+	@Query("SELECT SUM(k.price)FROM Kakei k WHERE k.userId=:userId AND k.date=:date")
+	Integer getTotalByDate(@Param("userId") Integer userId, @Param("date") LocalDate date);
 }
