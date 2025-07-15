@@ -10,14 +10,14 @@
 	<h2 th:text="${year}+'年'+${month}+'月の家計簿'"></h2>
 
 	<div style="background-color: burlywood;">
-		<h3 style="text-align: center;">[[${@accountModel.name}]]さんの家計記録     </h3>
+		<h3 style="text-align: center;">[[${@accountModel.name}]]さんの家計記録</h3>
 	
 		</div>
 		
 		<a href="/record/add" class="button2">新規登録</a>
 		<a href="/users/login" class="button2">ログアウト</a>
 		<h3>今月の支出:[[${totalPrice}]]円
-			<br>今月の収入:[[${totalIncom}]]円
+			&nbsp;&nbsp;&nbsp;今月の収入:[[${totalIncom}]]円
 		</h3>
 		
 			
@@ -88,7 +88,7 @@
 					
 			    </span>
 				<span th:each="incom:${incoms}"
-									th:if="${incom.date.date == dateNum}"><br>$[[${incom.price}]]</span>
+									th:if="${incom.date.date == dateNum}"><br>￥[[${incom.price}]]</span>
 
 			  </a>
 			</td>

@@ -95,6 +95,7 @@ public class KakeiCalendarController {
 		model.addAttribute("lastMonday", lastMonday);
 		model.addAttribute("lastSunday", lastSunday);
 
+		//支出を取得
 		List<KakeiboWithCategory> expenses = kakeiboWithCategoryRepository.findByUserIdAndDateBetween(userId,
 				sqlFirstDay, sqlEndDay);
 		//収入を取得する
