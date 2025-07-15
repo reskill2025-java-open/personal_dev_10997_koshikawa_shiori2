@@ -99,6 +99,12 @@ public class KakeiCalendarController {
 		//月の日数を計算
 		int daysInMonth = firstDay.lengthOfMonth();
 
+		//週の段数を計算する。月の日数に最初の段の空きコマを加えて、7で割って、切り上げる。
+		double weekOfMonthDouble = (double) (firstDayOfWeek + daysInMonth) / 7;
+		int weekOfMonth = (int) Math.ceil(weekOfMonthDouble);
+
+		model.addAttribute("weekOfMonth", weekOfMonth);
+
 		//priceの合計金額計算をする
 		//streamで処理をまとめる、mapToIntでIntegerをIntに、
 		List<Integer> priceList = kakeiRepository.findPricesByUserIdAndDateBetween(

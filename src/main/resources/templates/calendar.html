@@ -77,9 +77,9 @@
 		<th>金</th>
 		<th style="color:skyblue">土</th>
 	</tr>
-		<tr th:each="week:${#numbers.sequence(1,6)}">
+		<tr th:each="week:${#numbers.sequence(1,weekOfMonth)}">
 			<td class="calendar-cell"
-			    th:each="dayOfWeek : ${#numbers.sequence(0, 6)}"
+			    th:each="dayOfWeek : ${#numbers.sequence(0,6)}"
 			    th:with="cellIndex=${(week - 1) * 7 + dayOfWeek},
 			             dateNum=${cellIndex - firstDayOfWeek + 1}">
 
