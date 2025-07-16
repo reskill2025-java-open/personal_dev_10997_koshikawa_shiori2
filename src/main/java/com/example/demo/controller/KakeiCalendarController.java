@@ -184,6 +184,22 @@ public class KakeiCalendarController {
 
 		//Iocom Entityのデータを取得
 		model.addAttribute("incomData", incomRepository.findByUserIdAndDate(userId, date));
+		LocalDate firstDay = LocalDate.of(year, month, 1);
+		LocalDate lastDay = firstDay.withDayOfMonth(firstDay.lengthOfMonth());
+		java.sql.Date sqlFirstDay = java.sql.Date.valueOf(firstDay);
+		java.sql.Date sqlLastDay = java.sql.Date.valueOf(lastDay);
+
+		List<Incom> incomList = incomRepository.findByUserIdAndDateBetween(userId, sqlFirstDay, sqlLastDay);
+
+		// 月別収入合計
+		int totalIncom = incomList.stream()
+				.filter(Objects::nonNull)
+				.mapToInt(Incom::getPrice)
+				.sum();
+		model.addAttribute("incomList", incomList);
+
+		model.addAttribute("totalIncom", totalIncom);
+
 		return "dailyList";
 	}
 

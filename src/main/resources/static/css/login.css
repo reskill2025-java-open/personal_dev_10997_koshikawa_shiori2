@@ -13,7 +13,7 @@ h2{
   background-color: #fdf9f2;
   color:peru;
   text-decoration: none;
-  border-radius: 4px;
+  
   font-size: 14px;
   text-align: center;
   border: none;
@@ -168,7 +168,6 @@ margin-left: 50%;
 	table-layout: fixed;
 	margin:0 auto;
 	border-width: 8px;
-	border-radius: 15px;
 	border:1px solid #eedcb3;
 	border-collapse:collapse;
 	width: 70%;
@@ -178,8 +177,9 @@ margin-left: 50%;
 
 .today-mark{
 	background-color:wheat;
-	border-radius: 8px;
 	display: inline-block;
+	width: 100%;
+	height: 100%;
 }
 
 
