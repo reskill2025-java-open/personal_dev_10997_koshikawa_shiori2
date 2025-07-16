@@ -102,6 +102,8 @@ public class KakeiCalendarController {
 		List<Incom> incoms = incomRepository.findByUserIdAndDateBetween(userId, sqlFirstDay, sqlEndDay);
 		model.addAttribute("incoms", incoms);
 
+		//収支を計算する
+
 		//getDayOfWeek 曜日を取得 getValue int型で返す
 		int firstDayOfWeek = firstDay.getDayOfWeek().getValue();
 		firstDayOfWeek = (firstDayOfWeek == 7) ? 0 : firstDayOfWeek;
@@ -136,6 +138,13 @@ public class KakeiCalendarController {
 				.filter(Objects::nonNull)
 				.mapToInt(Integer::intValue)
 				.sum();
+
+		//支出の差し引きをする
+		int syushi = totalIncom - totalPrice;
+
+		//差し引きのモデル
+		model.addAttribute("syushi", syushi);
+
 		model.addAttribute("totalIncom", totalIncom);
 
 		model.addAttribute("year", currentYear);
